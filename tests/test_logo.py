@@ -1,34 +1,29 @@
 import allure
 import pytest
-from conftest import browser
 from pages.logo_page import LogoPage
 
-@pytest.fixture
-def logo_page():
-    logo_page = LogoPage()
-    return logo_page
 
 class TestURL:
     @allure.title('Проверка URL Логотипа Самокат')
-    def test_main_page(self,browser, logo_page):
+    def test_main_page(self, logo_page):
         # Открытие браузера
-        logo_page.open_browser(browser)
+        logo_page.open_browser()
         # Клик по кнопке "Заказать" в шапке
-        logo_page.click_order_button(browser)
+        logo_page.click_order_button()
         # Клик по логотипу "Самокат"
-        logo_page.click_scooter_button(browser)
+        logo_page.click_scooter_button()
         # Проверка URL логотипа Самокат
-        logo_page.should_main_page_url(browser)
+        logo_page.should_main_page_url()
 
     @allure.title('Проверка URL Логотипа Яндекс')
-    def test_dzen_url(self, browser, logo_page):
+    def test_dzen_url(self, logo_page):
         # Открытие браузера
-        logo_page.open_browser(browser)
+        logo_page.open_browser()
         # Клик по кнопке "Заказать" в шапке
-        logo_page.click_yandex_button(browser)
+        logo_page.click_yandex_button()
         # Переключение на новоую вкладку
-        logo_page.switching_to_the_tab(browser)
+        logo_page.switching_to_the_tab()
         # Ожидание загрузки страницы Дзен
-        logo_page.wait_for_page_load(browser)
+        logo_page.wait_for_page_load()
         # Проверка URL логотипа Самокат
-        logo_page.should_dzen_url(browser)
+        logo_page.should_dzen_url()
