@@ -26,8 +26,8 @@ class LogoPage(BasePage):
         return self
 
     @allure.step("Переключение вкладки")
-    def switching_to_the_tab(self):
-        self.browser.switch_to.window(self.browser.window_handles[1])
+    def switching_to_the_tab(self,index=1):
+        super().switching_to_the_tab(index)
         return self
 
     @allure.step("Ожидание загрузки страницы")
@@ -37,10 +37,11 @@ class LogoPage(BasePage):
 
     @allure.step("Проверка URL вкладки Дзен")
     def should_dzen_url(self):
-        assert self.browser.current_url == Urls.DZEN_URL
+        self.should_be_url(Urls.DZEN_URL)
         return self
 
     @allure.step("Проверка URL после клика по логотипу Самокат")
     def should_main_page_url(self):
-        assert self.browser.current_url == Urls.MAIN_PAGE_URL
+        self.should_be_url(Urls.MAIN_PAGE_URL)
         return self
+

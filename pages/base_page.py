@@ -19,3 +19,9 @@ class BasePage:
 
     def wait_for_url_to_be(self,url,timeout=10):
         WebDriverWait(self.browser, timeout).until(EC.url_contains(url))
+
+    def switching_to_the_tab(self,index=1):
+        self.browser.switch_to.window(self.browser.window_handles[index])
+
+    def should_be_url(self,expected_url):
+        assert(self.browser.current_url == expected_url)
